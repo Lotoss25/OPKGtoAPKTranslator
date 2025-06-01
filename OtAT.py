@@ -6,7 +6,9 @@ import shutil
 def OPKG_to_APK_Translator(input_directory):
         opkg_to_apk_map = [
             (r'\bopkg update\b', "apk update"),
+            (r'\bopkg update && opkg install\b', "apk --update-cache add"),
             (r'\bopkg install\b', "apk add"),
+            (r'\bopkg remove --force-depends\b', "apk del -r"),
             (r'\bopkg remove\b', "apk del"),
             (r'\bopkg upgrade\b', "apk upgrade"),
             (r'\bopkg list-installed\b', "apk list"),
